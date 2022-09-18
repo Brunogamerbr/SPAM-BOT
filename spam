@@ -65,6 +65,20 @@ remover() {
   [[ "${resp}" = "S" || "${resp}" = "s" ]] && delete
 }
 
+clear_session() {
+clear
+[[ $(screen -list| grep -c 'bot_pix') == '0' ]] && {
+  rm -r $HOME/SPAM-BOT/chorme
+  echo -e "${red}SESSAO RESTAURADA COM SUCESSO !${tag}"
+  sleep 3s
+  menu
+  } || {
+  echo -e "${red}DESLIGUE O BOT PRIMEIRO !${tag}"
+  sleep 3s
+  menu
+}
+}
+
 
 update() {
   clear
@@ -100,6 +114,7 @@ menu() {
  echo -e "${red}[${tag}02${red}]${tag} • ${amarelo}ATUALIZAR SPAM-BOT${tag}"
  echo -e "${red}[${tag}03${red}]${tag} • ${amarelo}REMOVER SPAM-BOT${tag}"
  echo -e "${red}[${tag}04${red}]${tag} • ${amarelo}QR CODE${tag}"
+ echo -e "${red}[${tag}05${red}]${tag} • ${amarelo}LIMPAR SESSAO${tag}"
  echo -e "${red}[${tag}00${red}]${tag} • ${amarelo}SAIR${tag}\n"
  echo -ne "${verde}INFORME UMA OPÇÃO: ${tag}";
  read resposta
@@ -111,6 +126,7 @@ menu
     remover return 0 
     }
   [[ "${resposta}" = "4" || "${resposta}" = "04" ]] && qr
+  [[ "${resposta}" = "5" || "${resposta}" = "05" ]] && clear_session
   [[ "${resposta}" = "0" || "${resposta}" = "00" ]] && { 
     exit 1 
     }
