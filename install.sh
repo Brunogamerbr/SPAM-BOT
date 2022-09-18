@@ -9,6 +9,7 @@ amarelo="\033[1;33m"
 barra="\E[44;1;37m"
 tag_barra="\E[0m"
 tag="\033[0m"
+
 ############### DEV: @Bruno_VPN ###############
 
 clear
@@ -23,6 +24,7 @@ rm -f spam_bot.zip > /dev/null 2>&1
 sleep 3s
 cd $HOME
 clear
+
 ################################################
 
 echo -e "${azul}Baixando dependencias (pode demorar)...${tag}"
@@ -36,6 +38,7 @@ npm install -y > /dev/null 2>&1
 npm install forever -g > /dev/null 2>&1
 sleep 2s
 clear
+
 ###################################################
 
 echo -e "${azul}Finalizando...${tag}"
@@ -45,4 +48,4 @@ chmod 777 spam
 mv spam /bin/spam > /dev/null 2>&1
 clear
 
-echo -e "${azul}Instalação finalizada, comando principal${tag} ${branco}spam${tag}"
+echo -e "${azul}Instalação finalizada, comando principal${tag} ${branco}spam${tag}, ${azul}Coloque seu numero no arquivo ${tag}${branco}config.json${tag} e procure suporte com ${branco}@Bruno_VPN${tag}"
