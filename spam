@@ -65,6 +65,36 @@ remover() {
   [[ "${resp}" = "S" || "${resp}" = "s" ]] && delete
 }
 
+sessao() {
+  clear
+  [[ $(screen -list| grep -c 'bot_pix') == '0' ]] && {
+    clear
+    echo ""
+    echo -ne "${verde}REALMENTE DESEJA DESCONECTAR O QR CODE? (s/n)${tag}: "; read resp
+    [[ "${resp}" = "N" || "${resp}" = "n" ]] && cancell
+    [[ "${resp}" = "S" || "${resp}" = "s" ]] && logout
+  } || {
+    echo ""
+    echo -e "${red}PRIMEIRO DESLIGUE O BOT !${tag}"
+    sleep 2s
+    menu
+  }
+}
+
+logout() {
+  clear
+  echo ""
+  echo -e "${red}DESCONECTANDO SPAM-BOT...${tag}"
+  sleep 5s
+  cd $HOME/SPAM-BOT
+  rm -rf $HOME/SPAM-BOT/chorme > /dev/null 2>&1
+  clear
+  echo ""
+  echo -e "${red}SPAM-BOT DESCONECTADO COM SUCESSO!${tag}"
+  sleep 3s
+  menu
+}
+
 
 update() {
   clear
@@ -99,7 +129,8 @@ menu() {
  echo -e "${red}[${tag}01${red}]${tag} • ${amarelo}ATIVAR SPAM-BOT${tag}";
  echo -e "${red}[${tag}02${red}]${tag} • ${amarelo}ATUALIZAR SPAM-BOT${tag}"
  echo -e "${red}[${tag}03${red}]${tag} • ${amarelo}REMOVER SPAM-BOT${tag}"
- echo -e "${red}[${tag}04${red}]${tag} • ${amarelo}QR CODE${tag}"
+ echo -e "${red}[${tag}04${red}]${tag} • ${amarelo}CONECTAR QR-CODE${tag}"
+ echo -e "${red}[${tag}05${red}]${tag} • ${amarelo}DESCONECTAR QR-CODE${tag}"
  echo -e "${red}[${tag}00${red}]${tag} • ${amarelo}SAIR${tag}\n"
  echo -ne "${verde}INFORME UMA OPÇÃO: ${tag}";
  read resposta
@@ -111,10 +142,11 @@ menu
     remover return 0 
     }
   [[ "${resposta}" = "4" || "${resposta}" = "04" ]] && qr
+  [[ "${resposta}" = "5" || "${resposta}" = "05" ]] && sessao
   [[ "${resposta}" = "0" || "${resposta}" = "00" ]] && { 
     exit 1 
     }
-  [[ "${resposta}" != "1" || "${resposta}" != "01" ||"${resposta}" != "2" || "${resposta}" != "02" || "${resposta}" != "3" || "${resposta}" != "03" || "${resposta}" != "4" || "${resposta}" != "04" ]]
+  [[ "${resposta}" != "1" || "${resposta}" != "01" ||"${resposta}" != "2" || "${resposta}" != "02" || "${resposta}" != "3" || "${resposta}" != "03" || "${resposta}" != "4" || "${resposta}" != "04" || "${resposta}" != "5" || "${resposta}" != "05" ]]
   erro 
   sleep 1s
   main
