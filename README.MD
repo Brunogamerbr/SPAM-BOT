@@ -13,3 +13,5 @@ Coloque seu numero ex: ```5527000000000``` no arquivo ```config.json``` e adquir
 
 # Correção de possiveis erros:
 Aplicação demorando gerar qr-code execute esse comando com o bot desligado: ```rm -r SPAM-BOT/chorme``` ligue-o novamente e verifique se gerou o qr-code.
+
+![alt text](https://i.imgur.com/phRsW1D.jpg)
